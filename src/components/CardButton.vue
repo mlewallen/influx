@@ -1,6 +1,8 @@
 <template>
   <v-card class="pa-4 text-center d-flex flex-column justify-center align-center">
-    <v-icon :color="color" size="92" class="pa-4 card-button-icon">{{ icon }}</v-icon>
+    <!-- <v-icon :color="color" size="92" class="pa-4 card-button-icon">{{ icon }}</v-icon> -->
+    <v-img src="../assets/img/icon-badge.png" aspect-ratio="1.7"></v-img>
+    <img class="my-4" :src="require(`@/assets/img/${icon}`)" />
     <v-card-title class="headline mb-2">{{ title }}</v-card-title>
     <v-card-subtitle class="subtitle-2">{{ subtitle }}</v-card-subtitle>
     <v-card-actions>
@@ -18,7 +20,12 @@ export default {
     'subtitle',
     'icon',
     'color'
-  ]
+  ],
+  computed: {
+    imageSource: function () {
+      return this.icon == "mdi-at" ? "../assets/img/icon-email.png" : "../assets/img/icon-badge.png"
+    }
+  }
 }
 </script>
 

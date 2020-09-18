@@ -14,16 +14,18 @@
           <v-col cols="12">
             <h4 class="subtitle mb-4">Customize your badge</h4>
 
-            <v-file-input
-              label="Employee Image"
-              @v-on:change="setUserImage"
-              id="image-upload"
+            <v-text-field label="Select Employee Image" placeholder="Click to upload" @click="pickFile" v-model="user.imgName"></v-text-field>
+            <input
+              type="file"
+              style="display: none"
+              ref="image"
+              accept="image/*"
+              @change="setUserImage"
             >
-            </v-file-input>
-            <v-text-field label="First Name" v-model="user.first"></v-text-field>
-            <v-text-field label="Last Name" v-model="user.last"></v-text-field>
-            <v-text-field label="Title" v-model="user.title"></v-text-field>
-            <v-text-field label="Location" v-model="user.location"></v-text-field>
+            <v-text-field label="First Name" v-model="user.first" placeholder="John"></v-text-field>
+            <v-text-field label="Last Name" v-model="user.last" placeholder="Smith"></v-text-field>
+            <v-text-field label="Title" v-model="user.title" placeholder="Designer"></v-text-field>
+            <v-text-field label="Location" v-model="user.location" placeholder="Washington, D.C."></v-text-field>
             <v-menu
               ref="menu1"
               v-model="menu1"
@@ -37,7 +39,6 @@
                 <v-text-field
                   v-model="user.date"
                   label="Hire Date"
-                  hint="MM/DD/YYYY format"
                   persistent-hint
                   v-bind="attrs"
                   @blur="date = parseDate(dateFormatted)"
@@ -70,8 +71,14 @@ export default {
     }
   },
   methods: {
+    pickFile() {
+      this.$refs.image.click()
+    },
     setUserImage (e) {
+      console.log('before')
       this.createImage(e.target.files[0]);
+      this.user.imgName = e.target.files[0].name;
+      console.log('after')
     },
     createImage(file) {
       var reader = new FileReader();

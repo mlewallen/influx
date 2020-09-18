@@ -33,7 +33,8 @@ export default new Vuex.Store({
       title: "",
       location: "",
       date: "",
-      img: ""
+      img: "",
+      imgName: ""
     },
     drawer: true
   },

@@ -18,14 +18,14 @@
               </v-list-item-icon>
             </v-list-item>
           </div>
-          <div class="bottom">
+          <!-- <div class="bottom">
             <v-list-item link @click.prevent="setThemeDark()">
               <v-list-item-icon class="d-flex flex-column justify-center align-center nav-icon">
                 <v-icon>{{ darkTheme ? `mdi-brightness-7` : `mdi-brightness-2` }}</v-icon>
                 <p class="nav-title mb-0 mt-1">{{ darkTheme ? `Light` : `Dark` }}</p>
               </v-list-item-icon>
             </v-list-item>
-          </div>
+          </div> -->
         </v-list>
       </v-navigation-drawer>
 
@@ -89,16 +89,16 @@ export default {
   }
   .fade-enter {
     opacity: 0;
-    transform: translateY(4px);
+    // transform: translateY(4px);
   }
   .fade-leave-to {
     opacity: 0;
-    transform: translateY(4px);
+    // transform: translateY(4px);
   }
 }
 
 .app-nav {
-  background: linear-gradient(180deg, #0D86E7, #12C3E1) !important;
+  background: linear-gradient(180deg, --primary, lighten(--primary, 15)) !important;
   .nav-wrap {
     height: 100vh;
     .nav-icon {

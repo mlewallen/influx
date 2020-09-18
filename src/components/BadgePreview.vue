@@ -1,6 +1,6 @@
 <template>
   <main class="flex flex-column align-center justify-center">
-    <div class="badge" id="print">
+    <div class="badge mb-4" id="print">
       <div class="badge--wrapper">
         <div
           class="badge--avatar"
@@ -30,21 +30,61 @@
     <div id="canvas">
       <a v-on:click.prevent="closeCanvas" class="button button--danger">Close</a>
     </div>
-    <!-- <a href="#" class="button button--primary button--block">Download</a> -->
+    <v-btn :disabled="hasUserInfo" @click.prevent="createCanvas" color="primary" class="mt-4">Download Badge</v-btn>
   </main>
 </template>
 
 <script>
+import html2canvas from "html2canvas";
+
 export default {
-  name: "Content",
+  name: "BadgePreview",
   methods: {
     closeCanvas: function () {
       document.getElementById("canvas").classList.remove("open")
+    },
+    createCanvas: function () {
+      var image = document.getElementById("print");
+      html2canvas(image, {
+        allowTaint: true,
+        height: 505.5,
+        width: 318.75
+      }).then(canvas => {
+        let fileName = "badge--" + this.$store.state.userData.first + '-' + this.$store.state.userData.last;
+        this.saveAs(canvas.toDataURL("image/png"), fileName);      
+        this.$store.state.dialog = true  
+      });
+    },
+    saveAs: function (uri, filename) {
+      var link = document.createElement('a');
+      if (typeof link.download === 'string') {
+        link.href = uri;
+        link.download = filename;
+
+        if (this.iOS) {
+          alert("Instructions...");
+          link.target = "_blank";
+          link.href = uri
+        } else {
+          link.href = uri.replace(/^data[:]image\/png[;]/i, "data:application/download;");//force download
+        } 
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+        //simulate click
+        link.click();
+        //remove the link when done
+        document.body.removeChild(link);
+      } else {
+          window.open(uri);
+      }
     }
   },
   computed: {
     user () {
       return this.$store.state.userData
+    },
+    hasUserInfo () {
+      return (this.user.img && this.user.first && this.user.last && this.user.title && this.user.location && this.user.date) == '' ? true : false
     }
   }
 };
@@ -52,13 +92,6 @@ export default {
 
 <style lang="stylus">
 @import "../assets/styles/theme.styl"
-
-// main
-//   padding 0 --spacing-sm --spacing-lg
-//   @media (min-width 780px)
-//     padding --spacing-lg
-//     margin 64px 0 0 400px
-//     height calc(100vh - 152px)
 
 .button--block 
   max-width 318.75px
