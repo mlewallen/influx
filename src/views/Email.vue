@@ -14,7 +14,7 @@
               text
               color="primary"
               @click.stop="
-                $store.state.dialog.settings = !$store.state.dialog.settings
+                $store.state.dialog.email = !$store.state.dialog.email
               "
             >
               Need help?
@@ -51,7 +51,7 @@
         </v-col>
       </v-row>
       
-      <dialog-settings />
+      <dialog-email />
       
       <v-snackbar v-model="$store.state.copied" top>
         Signature copied!
@@ -79,14 +79,14 @@
 <script>
 import EmailPreview from "../components/EmailPreview";
 import DrawerSignature from "../components/DrawerSignature";
-import DialogSettings from "../components/DialogSettings";
+import DialogEmail from "../components/DialogEmail";
 
 export default {
   name: "Email",
   components: {
     EmailPreview,
     DrawerSignature,
-    DialogSettings
+    DialogEmail
   },
   computed: {
     hasSignature: function() {

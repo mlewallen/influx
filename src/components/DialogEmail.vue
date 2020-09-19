@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="$store.state.dialog.settings" max-width="600">
+  <v-dialog v-model="$store.state.dialog.email" max-width="600">
     <v-card>
       <v-card-title class="headline">Gmail Signature Instructions</v-card-title>
       <v-card-text>
@@ -56,7 +56,7 @@
         <v-btn
           color="primary"
           text
-          @click="$store.state.dialog.settings = !$store.state.dialog.settings"
+          @click="$store.state.dialog.email = !$store.state.dialog.email"
         >
           Close
         </v-btn>
@@ -67,11 +67,6 @@
 
 <script>
 export default {
-  name: "DialogSettings",
-  computed: {
-    copyEmailSignature: function() {
-      return console.log("Helo");
-    }
-  }
+  name: "DialogEmail",
 };
 </script>

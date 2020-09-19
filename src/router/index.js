@@ -22,7 +22,7 @@ const routes = [
     component: Badge,
     meta: {
       icon: 'mdi-shield-check-outline',
-      title: 'Badge Creater'
+      title: 'Badge Creator'
     }
   },
   {

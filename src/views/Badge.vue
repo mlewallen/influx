@@ -11,7 +11,7 @@
               text
               color="primary"
               @click.stop="
-                $store.state.dialog.settings = !$store.state.dialog.settings
+                $store.state.dialog.badge = !$store.state.dialog.badge
               "
             >
               Need help?
@@ -25,7 +25,7 @@
         </v-col>
       </v-row>
       
-      <dialog-settings />
+      <dialog-badge />
       
       <v-btn
         v-show="!$store.state.drawer"
@@ -46,14 +46,14 @@
 <script>
 import BadgePreview from "../components/BadgePreview";
 import DrawerBadge from "../components/DrawerBadge";
-import DialogSettings from "../components/DialogSettings";
+import DialogBadge from "../components/DialogBadge";
 
 export default {
   name: "Badge",
   components: {
     BadgePreview,
     DrawerBadge,
-    DialogSettings
+    DialogBadge
   },
   methods: {
     copyEmailSignature () {

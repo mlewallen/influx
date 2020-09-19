@@ -4,7 +4,7 @@
     :width="viewportWidth > 900 ? '360' : '100%'"
   >
     <div class="d-flex flex-row justify-space-between align-center px-4 py-4 ">
-      <span class="text-h6">Badge Creater</span>
+      <span class="text-h6">Badge Creator</span>
       <v-chip label x-small color="gray" class="px-1">V1.0</v-chip>
     </div>
     <v-divider></v-divider>

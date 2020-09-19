@@ -24,7 +24,8 @@ export default new Vuex.Store({
     showInstructions: false,
     activeCta: false,
     dialog: {
-      settings: false
+      badge: false,
+      email: false
     },
     copied: false,
     userData: {

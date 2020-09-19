@@ -8,7 +8,7 @@
       <v-container>
         <v-row justify="center">
           <v-col cols="12" sm="12" md="6" lg="3">
-            <card-button link="/badge" title="Badge Creater" subtitle="Customize your own company issued badge!" icon="icon-badge.png" color="primary"/>
+            <card-button link="/badge" title="Badge Creator" subtitle="Customize your own company issued badge!" icon="icon-badge.png" color="primary"/>
           </v-col>
           <v-col cols="12" sm="12" md="6" lg="3">
             <card-button link="/email" title="Email Signature" subtitle="Create your company email signature in seconds!" icon="icon-email.png" color="primary"/>
