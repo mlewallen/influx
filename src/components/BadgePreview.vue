@@ -1,6 +1,6 @@
 <template>
   <main class="flex flex-column align-center justify-center">
-    <div class="badge mb-4" id="print">
+    <div class="badge" id="print">
       <div class="badge--wrapper">
         <div
           class="badge--avatar"
@@ -14,7 +14,7 @@
         </div>
         <div class="badge--title">{{ user.title }}</div>
         <div
-          class="badge--info flex flex-row align-center justify-space-between text-center"
+          class="badge--info d-flex align-center justify-space-around text-center"
         >
           <div class="badge--location">
             <span class="label">Location</span>
@@ -30,7 +30,7 @@
     <div id="canvas">
       <a v-on:click.prevent="closeCanvas" class="button button--danger">Close</a>
     </div>
-    <v-btn :disabled="hasUserInfo" @click.prevent="createCanvas" color="primary" class="mt-4">Download Badge</v-btn>
+    <v-btn large :disabled="hasUserInfo" @click.prevent="createCanvas" color="primary">Download Badge <v-icon right small>mdi-download-outline</v-icon></v-btn>
   </main>
 </template>
 
@@ -103,6 +103,7 @@ export default {
   border-radius 12px
   box-shadow --shadow-sm
   background --gray-900 no-repeat center / cover
+  margin-bottom 24px
 
   .badge--wrapper
     overflow hidden
