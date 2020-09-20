@@ -1,33 +1,47 @@
 <template>
   <v-app dark>
-      <v-navigation-drawer 
-        v-model="drawer" 
-        app 
-        color="primary" 
-        dark 
-        mini-variant 
-        mini-variant-width="100" 
-        class="d-flex flex-column justify-space-between app-nav"
-      >
-        <v-list dense nav class="d-flex flex-column justify-space-between nav-wrap">
-          <div class="top">
-            <v-list-item v-for="route in $router.options.routes" :key="route.name" link :to="route.path">
-              <v-list-item-icon class="d-flex flex-column justify-center align-center nav-icon">
-                <v-icon>{{ route.meta.icon }}</v-icon>
-                <p class="nav-title mb-0 mt-1">{{ route.meta.title }}</p>
-              </v-list-item-icon>
-            </v-list-item>
-          </div>
-          <!-- <div class="bottom">
-            <v-list-item link @click.prevent="setThemeDark()">
-              <v-list-item-icon class="d-flex flex-column justify-center align-center nav-icon">
-                <v-icon>{{ darkTheme ? `mdi-brightness-7` : `mdi-brightness-2` }}</v-icon>
-                <p class="nav-title mb-0 mt-1">{{ darkTheme ? `Light` : `Dark` }}</p>
-              </v-list-item-icon>
-            </v-list-item>
-          </div> -->
-        </v-list>
-      </v-navigation-drawer>
+    <v-app-bar clipped-left class="app-toolbar">
+      <div class="d-flex align-center">
+        <img :src="require('@/assets/img/icon-group.png')" width="40" />
+        <span class="h5 ml-4 mr-2 pr-2 logo">Influx</span>
+        <span class="caption">On-boarding Suite</span>
+      </div>
+      <v-spacer></v-spacer>
+      <v-avatar color="grey" size="40">
+        <v-icon v-if="user.img == ''" dark>mdi-account</v-icon>
+        <img v-else :src="user.img" />
+      </v-avatar>
+    </v-app-bar>
+
+    <v-navigation-drawer 
+      v-model="drawer" 
+      app 
+      clipped
+      color="primary" 
+      dark 
+      mini-variant 
+      mini-variant-width="100" 
+      class="d-flex flex-column justify-space-between app-nav"
+    >
+      <v-list dense nav class="d-flex flex-column justify-space-between nav-wrap">
+        <div class="top">
+          <v-list-item v-for="route in $router.options.routes" :key="route.name" link :to="route.path">
+            <v-list-item-icon class="d-flex flex-column justify-center align-center nav-icon">
+              <v-icon>{{ route.meta.icon }}</v-icon>
+              <p class="nav-title mb-0 mt-1">{{ route.meta.title }}</p>
+            </v-list-item-icon>
+          </v-list-item>
+        </div>
+        <!-- <div class="bottom">
+          <v-list-item link @click.prevent="setThemeDark()">
+            <v-list-item-icon class="d-flex flex-column justify-center align-center nav-icon">
+              <v-icon>{{ darkTheme ? `mdi-brightness-7` : `mdi-brightness-2` }}</v-icon>
+              <p class="nav-title mb-0 mt-1">{{ darkTheme ? `Light` : `Dark` }}</p>
+            </v-list-item-icon>
+          </v-list-item>
+        </div> -->
+      </v-list>
+    </v-navigation-drawer>
 
     <v-layout fill-height>
       <transition name="fade" mode="out-in">
@@ -54,6 +68,9 @@ export default {
         sessionStorage.setItem('darkTheme', false)
       }
       window.location.reload();
+    },
+    user: function () {
+      return this.$store.state.userData
     }
   },
   method: {
@@ -97,8 +114,18 @@ export default {
   }
 }
 
+.app-toolbar {
+  z-index: 101;
+
+  .logo {
+    border-right: 1px solid rgba(0,0,0,.25);
+  }
+}
+
 .app-nav {
   background: linear-gradient(180deg, --primary, lighten(--primary, 15)) !important;
+  margin-top: 64px;
+  z-index: 100;
   .nav-wrap {
     height: 100vh;
     .nav-icon {
