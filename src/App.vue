@@ -21,7 +21,7 @@
       dark 
       mini-variant 
       mini-variant-width="100" 
-      class="d-flex flex-column justify-space-between app-nav"
+      class="app-nav"
     >
       <v-list dense nav class="d-flex flex-column justify-space-between nav-wrap">
         <div class="top">
@@ -32,14 +32,6 @@
             </v-list-item-icon>
           </v-list-item>
         </div>
-        <!-- <div class="bottom">
-          <v-list-item link @click.prevent="setThemeDark()">
-            <v-list-item-icon class="d-flex flex-column justify-center align-center nav-icon">
-              <v-icon>{{ darkTheme ? `mdi-brightness-7` : `mdi-brightness-2` }}</v-icon>
-              <p class="nav-title mb-0 mt-1">{{ darkTheme ? `Light` : `Dark` }}</p>
-            </v-list-item-icon>
-          </v-list-item>
-        </div> -->
       </v-list>
     </v-navigation-drawer>
 
@@ -58,28 +50,8 @@ export default {
     drawer: true
   }),
   computed: {
-    darkTheme: function () {
-      return JSON.parse(sessionStorage.getItem('darkTheme'))
-    },
-    setThemeDark: function () {
-      if (this.darkTheme === false) {
-        sessionStorage.setItem('darkTheme', true)
-      } else {
-        sessionStorage.setItem('darkTheme', false)
-      }
-      window.location.reload();
-    },
     user: function () {
       return this.$store.state.userData
-    }
-  },
-  method: {
-    },
-  mounted () {
-    if (this.darkTheme) {
-      return;
-    } else {
-      sessionStorage.setItem('darkTheme', false);
     }
   }
 };
@@ -106,11 +78,11 @@ export default {
   }
   .fade-enter {
     opacity: 0;
-    // transform: translateY(4px);
+    transform: translateY(-2px);
   }
   .fade-leave-to {
     opacity: 0;
-    // transform: translateY(4px);
+    transform: translateY(-2px);
   }
 }
 

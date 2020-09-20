@@ -1,6 +1,8 @@
 <template>
   <v-main class="badge-content">
+
     <DrawerBadge />
+
     <v-container fluid>
       <v-row justify="center" align="center">
         <v-col cols="12" sm="12" md="10" lg="9" class="d-flex flex-column justify-center text-center">
@@ -10,18 +12,18 @@
             <v-btn
               text
               color="primary"
-              @click.stop="
-                $store.state.dialog.badge = !$store.state.dialog.badge
-              "
+              @click.stop="$store.state.dialog.badge = !$store.state.dialog.badge"
             >
               Need help?
               <v-icon right>mdi-information-outline</v-icon>
             </v-btn>
           </v-toolbar>
           
-          <BadgePreview class="preview" />
+          <PreviewBadge class="preview" />
 
-          
+          <div class="text-center mb-4 pb-4">
+            <v-btn large :disabled="hasUserInfo" @click.prevent="createCanvas" color="primary">Download Badge <v-icon right small>mdi-download-outline</v-icon></v-btn>
+          </div>
         </v-col>
       </v-row>
       
@@ -44,41 +46,67 @@
 </template>
 
 <script>
-import BadgePreview from "../components/BadgePreview";
+import html2canvas from "html2canvas";
+import PreviewBadge from "../components/PreviewBadge";
 import DrawerBadge from "../components/DrawerBadge";
 import DialogBadge from "../components/DialogBadge";
 
 export default {
   name: "Badge",
   components: {
-    BadgePreview,
+    PreviewBadge,
     DrawerBadge,
     DialogBadge
   },
+  computed: {
+    user: function () {
+      return this.$store.state.userData
+    },
+    hasUserInfo () {
+      return (this.user.img && this.user.first && this.user.last && this.user.title && this.user.location && this.user.date) == '' ? true : false
+    }
+  },
   methods: {
-    copyEmailSignature () {
-      let signatureCode = document.getElementById('emailSignatureCode');
-      let code = signatureCode;
+    createCanvas: function () {
+      var image = document.getElementById("print");
+      html2canvas(image, {
+        allowTaint: true,
+        height: 505.5,
+        width: 318.75
+      }).then(canvas => {
+        let fileName = "badge--" + this.$store.state.userData.first + '-' + this.$store.state.userData.last;
+        this.saveAs(canvas.toDataURL("image/png"), fileName);      
+        this.$store.state.dialog = true  
+      });
+    },
+    saveAs: function (uri, filename) {
+      var link = document.createElement('a');
+      if (typeof link.download === 'string') {
+        link.href = uri;
+        link.download = filename;
 
-      const selection = window.getSelection();
-      const range = document.createRange();
-      range.selectNodeContents(code);
-      selection.removeAllRanges();
-      selection.addRange(range);
-
-      try {
-        document.execCommand('copy');
-        selection.removeAllRanges();
-        this.$store.state.copied = true
-      } catch(e) {
-        alert('Oops! Looks like something went wrong and we couldn\'t copy your signature -_-')
+        if (this.iOS) {
+          alert("Instructions...");
+          link.target = "_blank";
+          link.href = uri
+        } else {
+          link.href = uri.replace(/^data[:]image\/png[;]/i, "data:application/download;");//force download
+        } 
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+        //simulate click
+        link.click();
+        //remove the link when done
+        document.body.removeChild(link);
+      } else {
+          window.open(uri);
       }
     }
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="stylus">
 
 .badge-content {
 

@@ -13,13 +13,6 @@ export default new Vuex.Store({
     mobile: "",
     office: "",
     email: "",
-    accounts: [
-      { name: "Facebook", url: "", value: "facebook", checked: false },
-      { name: "Twitter", url: "", value: "twitter", checked: false },
-      { name: "Instagram", url: "", value: "instagram", checked: false },
-      { name: "LinkedIn", url: "", value: "linkedin", checked: false }
-    ],
-    showSocial: false,
     hasNoData: true,
     showInstructions: false,
     activeCta: false,

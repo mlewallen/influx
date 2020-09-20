@@ -1,6 +1,8 @@
 <template>
   <v-main class="email-content">
+
     <DrawerSignature />
+
     <v-container fluid>
       <v-row class="justify-center">
         <v-col cols="12" sm="12" md="10" lg="9">
@@ -13,16 +15,14 @@
             <v-btn
               text
               color="primary"
-              @click.stop="
-                $store.state.dialog.email = !$store.state.dialog.email
-              "
+              @click.stop="$store.state.dialog.email = !$store.state.dialog.email"
             >
               Need help?
               <v-icon right>mdi-information-outline</v-icon>
             </v-btn>
           </v-toolbar>
           
-          <EmailPreview class="preview" />
+          <PreviewEmail class="preview" />
 
           <div class="text-center mb-4 pb-4">
             <transition name="fade" mode="out-in">
@@ -53,11 +53,17 @@
       
       <dialog-email />
       
-      <v-snackbar v-model="$store.state.copied" top>
+      <v-snackbar elevation="24" color="primary" v-model="$store.state.copied" top>
         Signature copied!
-        <v-btn text @click="$store.state.copied = false">
-          Close
-        </v-btn>
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            text
+            v-bind="attrs"
+            @click="$store.state.copied = false"
+          >
+            Close
+          </v-btn>
+        </template>
       </v-snackbar>
       
       <v-btn
@@ -77,14 +83,14 @@
 </template>
 
 <script>
-import EmailPreview from "../components/EmailPreview";
+import PreviewEmail from "../components/PreviewEmail";
 import DrawerSignature from "../components/DrawerSignature";
 import DialogEmail from "../components/DialogEmail";
 
 export default {
   name: "Email",
   components: {
-    EmailPreview,
+    PreviewEmail,
     DrawerSignature,
     DialogEmail
   },
@@ -116,7 +122,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="stylus">
 
 .email-content {
 

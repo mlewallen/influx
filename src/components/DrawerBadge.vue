@@ -27,8 +27,8 @@
             <v-text-field label="Title" v-model="user.title" placeholder="Designer"></v-text-field>
             <v-text-field label="Location" v-model="user.location" placeholder="Washington, D.C."></v-text-field>
             <v-menu
-              ref="menu1"
-              v-model="menu1"
+              ref="datePickerMenu"
+              v-model="datePickerMenu"
               :close-on-content-click="false"
               transition="scale-transition"
               offset-y
@@ -45,7 +45,7 @@
                   v-on="on"
                 ></v-text-field>
               </template>
-              <v-date-picker v-model="user.date" no-title @input="menu1 = false"></v-date-picker>
+              <v-date-picker v-model="user.date" no-title @input="datePickerMenu = false"></v-date-picker>
             </v-menu>
           </v-col>
         </v-row>
@@ -59,7 +59,8 @@ export default {
   name: 'DrawerBadge',
   data() {
     return {
-      drawer: true
+      drawer: true,
+      datePickerMenu: false
     };
   },
   computed: {

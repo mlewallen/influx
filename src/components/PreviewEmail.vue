@@ -262,46 +262,45 @@ export default {
 };
 </script>
 
-
-<style lang="scss">
-/* Email Preview Styling */
-
+<style lang="stylus">
 .email {
   box-shadow: 0 2px 10px rgba(10,10,10,.1);
   margin-bottom: 24px;
-}
 
-.email .window-bar {
-  border-radius: 0;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  .dot {
-    border-radius: 8px;
+  .window-bar {
+    border-radius: 0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    
+    .dot {
+      border-radius: 8px;
+    }
+  }
+
+  .email__section {
+    padding: 16px;
+    
+    &.header {
+      color: white;
+      font-weight: bold;
+    }
+
+    &.to, &.subject {
+      background-color: white;
+      border-top: 1px solid rgba(0,0,0,.05);
+      border-bottom: 1px solid rgba(0,0,0,.05);
+    }
+
+    &.body {
+      border-bottom-right-radius: 4px;
+      border-bottom-left-radius: 4px;
+      background-color: white;
+    }
+
+    &.to, &.subject, &.body {
+      font-size: 14px;
+    }
   }
 }
 
-.email__section {
-  padding: 16px;
-}
-
-.email__section.header {
-  color: white;
-  font-weight: bold;
-}
-
-.email__section.to, .email__section.subject {
-  background-color: white;
-  border-top: 1px solid rgba(0,0,0,.05);
-  border-bottom: 1px solid rgba(0,0,0,.05);
-}
-
-.email__section.body {
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
-  background-color: white;
-}
-
-.email__section.to, .email__section.subject, .email__section.body {
-  font-size: 14px;
-}
 </style>
