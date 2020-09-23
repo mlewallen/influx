@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <v-app-bar clipped-left class="app-toolbar">
+    <v-app-bar clipped-left fixed class="app-toolbar">
       <div class="d-flex align-center">
         <img :src="require('@/assets/img/icon-group.png')" width="40" />
         <span class="h5 ml-4 mr-2 pr-2 logo">Influx</span>

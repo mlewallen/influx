@@ -10,18 +10,10 @@ export default new Vuetify({
       light: {
         error: "#ED3E3B",
         info: "#64B5F6",
-        primary: "#0D86E7",
-        secondary: "#0D86E7",
+        primary: "#2977FF",
+        secondary: "#2977FF",
         success: "#45D14C",
         warning: "#FFEE58",
-      },
-      dark: {
-        error: "#ED3E3B",
-        info: "#64B5F6",
-        primary: "#0D86E7",
-        secondary: "#0D86E7",
-        success: "#45D14C",
-        warning: "#FFEE58"
       }
     }
   }

@@ -33,6 +33,10 @@ export default {
 <style lang="stylus">
 @import "../assets/styles/theme.styl"
 
+.v-main__wrap {
+  margin-top: 64px;
+}
+
 // Intro
 .intro {
   height: 60vh;

@@ -113,6 +113,7 @@ export default {
   .v-main__wrap {
     display: flex;
     align-items: flex-start;
+    margin-top: 64px;
   }
 }
 
