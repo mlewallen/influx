@@ -64,6 +64,9 @@ export default new Vuex.Store({
   getters: {
     getUserData: state => {
       return state.userData
+    },
+    getDialogEmail: state => {
+      return state.dialog.email
     }
   },
   actions: {},

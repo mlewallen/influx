@@ -41,7 +41,6 @@
                   label="Hire Date"
                   persistent-hint
                   v-bind="attrs"
-                  @blur="date = parseDate(dateFormatted)"
                   v-on="on"
                 ></v-text-field>
               </template>

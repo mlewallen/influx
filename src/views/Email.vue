@@ -97,7 +97,7 @@ export default {
   computed: {
     hasSignature: function() {
       return this.$store.state.name !== "" ? false : true;
-    },
+    }
   },
   methods: {
     copyEmailSignature () {
